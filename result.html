@@ -1,0 +1,737 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>我的体质是：平和质,快来看看你的体质是什么?</title>
+    <!--<title>超级小郎中邀请你做超准中医体质测试</title>-->
+
+    <!-- Bootstrap -->
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/tz.css" rel="stylesheet">
+
+    <style type="text/css">
+        body {background: #FFF !important;}
+        .small-tip { font-size: 14px; }
+        .tab-list, .tab-list > li {
+            margin: 0;
+            list-style: none !important;
+            padding: 0;
+        }
+        .tab-list{
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+        }
+        .content .tab-list > li{
+            margin-left: 0;
+            float: left;
+            border:1px solid #299939;
+            border-radius: 25px;
+            margin-right: 10px;
+            margin-bottom: 10px;
+        }
+        .tab-list > li > a{
+            display: inline-block;
+            box-sizing: border-box;
+            padding: 5px 20px;
+            font-size: 16px;
+            color: #299939;
+            text-decoration:none;
+        }
+        .tab-list > .active{
+            background: #299939;
+        }
+        .tab-list > .active > a{
+            color: #fff;
+            text-decoration:none;
+        }
+        .tab-list-conent{
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .tab-list-conent{
+            border:1px solid #e5e5e5;
+        }
+        .tab-list-conent-title{
+            font-size: 16px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 15px;
+        }
+        .tab-lsit-conent-title-style{
+            display: inline-block;
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #299939;
+            margin-right: 5px;
+            margin-bottom:2px;
+        }
+        .tab-list-conent-txt{
+            font-size: 14px;
+            color: #555;
+            line-height: 28px;
+            padding-bottom: 10px;
+            border-bottom: 1px solid #e5e5e5;
+        }
+        .tab-list-conent-txt:last-of-type{
+            border-bottom: 0;
+            margin-bottom:0px;
+        }
+        .tab-list-conent-goods{
+            position: relative;
+            display: block;
+            overflow: hidden;
+        }
+        .tab-list-conent-goods-img{
+            width: 106px;
+            margin-top: -14%;
+        }
+        .bubble-list-goods-right{
+            float: left;
+            margin-left: 15px;
+            width: 62%;
+        }
+
+        .bubble-list-goods-right > h3{
+            margin: 0;
+            font-size: 14px;
+            text-align: left;
+            line-height: 18px;
+            font-weight: 500;
+            color: #333;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            height: auto;
+            border: 0;
+            padding: 0;
+        }
+        .tab-list-conent-right-symptom{
+            overflow: hidden;
+            width: 100%;
+            margin-top: 10px;
+            height: 23px;
+        }
+        .tab-list-conent-right-symptom > div{
+            float: left;
+            font-size: 12px;
+            color: #299939;
+            padding:0 10px;
+            border:1px solid #299939;
+            border-radius: 5px;
+            margin-right: 5px;
+            margin-bottom:20px;
+        }
+        .bubble-list-goods-right-Price{
+            margin-top: 12px;
+            overflow: hidden;
+        }
+        .jiawei{
+            float: left;
+            font-size: 12px;
+            color: #333;
+            margin-right: 2px;
+            display: inline-block;
+        }
+        .bubble-list-goods-right-Price > span{
+            float: left;
+            font-size: 16px;
+            color: #333;
+            line-height: 16px;
+        }
+        .bubbel-div{
+            position: absolute;
+            z-index: 9999;
+            right: 0;
+            bottom: 0;
+        }
+        .bubble-icon {
+            display: block;
+            width: 20px;
+            height: 20px;
+            background: url(https://img.huofar.com/life/icon/cart.png) no-repeat;
+            background-size: cover;
+        }
+        @media (max-width: 375px){
+            .bubble-list-goods-right{
+                width: 58%;
+            }
+        }
+        @media (max-width: 360px){
+            .bubble-list-goods-right {
+                width: 55%;
+            }
+        }
+        @media (max-width: 320px){
+            .bubble-list-goods-right{
+                width: 48%;
+            }
+        }
+        .typeinfo-text{
+            border-bottom: 10px solid #f7f7f7;
+        }
+        @media (max-width: 768px) {
+            .typeinfo-desc {
+                margin: 15px 25px 15px 25px !important;
+            }
+        }
+        .desc-list h3{
+            color:#333;
+            font-size:16px;
+        }
+        .desc-list ul li {
+            list-style: none;
+        }
+        @media (max-width: 768px){
+            .desc-list ul li {
+                margin-left: 0px;
+            }
+            .desc-list .content {
+                padding: 10px 15px;
+            }
+            .typeinfo-desc {
+                margin: 15px 15px 15px 15px !important;
+            }
+            .test-intro {
+                margin: 25px 15px 10px 15px;
+            }
+        }
+        .desc-list .item.active h3 em {
+            background: url(https://img.huofar.com/webapp/tizhi/images/shang1@3x.png) no-repeat;
+            background-size: 100%;
+        }
+        .desc-list h3 em{
+            background: url(https://img.huofar.com/webapp/tizhi/images/xia1@3x.png) no-repeat;
+            background-size: 100%;
+        }
+        .result-container {
+            padding: 0 0 50px 0;
+        }
+        .desc-list ul li.bold-li{
+            margin-left:0px !important;
+        }
+        .desc-list h3{
+            padding-left:15px;
+            font-size: 14px;
+        }
+        .plan_btn{
+            margin-top: 10px;
+            width: 80%;
+            height: 44px;
+            border-radius: 6px;
+            color: white;
+            background-color: #299939;
+            text-align: center;
+            line-height: 44px;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .my_share_tip{
+            position: fixed;
+            right: 52px;
+            top: 10px;
+            width: 140px;
+            height: 60px;
+            z-index: 9999;
+        }
+        .my_share_tip_img{
+            width: 185px;
+            height: 95px
+        }
+    </style>
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+    <script src="./js/html5shiv.js"></script>
+    <script src="./js/respond.min.js"></script>
+    <![endif]-->
+</head>
+<body>
+<header class="navbar navbar-static-top bs-docs-nav" id="top" role="banner">
+    <div class="container">
+        <h1>我的体质测试结果</h1>
+    </div>
+</header>
+<div class="my_share_tip" hidden id="sharetap"><img src="https://img.huofar.com/webapp/test/images/ts.png" class="my_share_tip_img"></div>
+<div style="display:none;">
+    <img src="https://img.huofar.com/images/huofar_leaf_white.png?type=1">
+</div>
+
+<div class="container result-container">
+
+    <!--结果类型-->
+    <div class="row typeinfo">
+        <div class="col-xs-12 typeinfo-text"  >
+            <div class="test-intro">
+                <h4>我的体质是</h4>
+                <h1>平和质</h1>
+                <h3>
+                    <br/>
+                </h3>
+            </div>
+            <p class="typeinfo-desc">
+                根据你的体质情况，推荐你从平和质开始入手，配合生活方式的改变从而改善体质偏颇。<br/>
+                平和体质是一种身心和谐的表现，努力保持吧          <!--span class="small-tip-2">
+          ①《中医体质分类与判定》是中华中医药学会于2009年4月9日颁布的国家标准。<br/>
+          ② 多种体质并存是多数人的状态，不必过于担心，调整生活方式是有改变的可能的。<br/>
+          <span-->
+            </p>
+        </div>
+    </div>
+
+    <!--<div class="tizhi-pics">
+      <div class="pic-frame" style="width:960px">
+                        <img src="http://www.huofar.com/image/evaluation/gjsx/2860670509_788f7d41ee.jpg" />
+                        <img src="http://www.huofar.com/image/evaluation/gjsx/artlife_rf_photo_of_yoga_stretch.jpg" />
+                        <img src="http://www.huofar.com/image/evaluation/gjsx/HST120.jpg" />
+                        <img src="http://www.huofar.com/image/evaluation/gjsx/3806887023_243b3b9141.jpg" />
+                        <img src="http://www.huofar.com/image/evaluation/gjsx/183803372_5faac2ce2b.jpg" />
+                        <img src="http://www.huofar.com/image/evaluation/gjsx/2357461457_49bc3b2823.jpg" />
+                  </div>
+    </div>-->
+
+
+    <!--图表信息-->
+    <!--div class="row chart">
+      <ul class="legend">
+        <li class="legend-my"><em></em>我的得分</li>
+        <li class="legend-average"><em></em>平均得分</li>
+        <li class="legend-health-baseline"><em></em>基本健康</li>
+      </ul>
+
+      <div class="chart-baselines">
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line"></div>
+        <div class="line green"></div>
+      </div>
+
+      <ul class="histogram">
+          <li class="histo" style="height:75.00px;"><span>平和质</span></li>
+          <li class="histo" style="height:0.00px;"><span>气虚质</span></li>
+          <li class="histo" style="height:0.00px;"><span>阳虚质</span></li>
+          <li class="histo" style="height:0.00px;"><span>阴虚质</span></li>
+          <li class="histo" style="height:0.00px;"><span>痰湿质</span></li>
+          <li class="histo" style="height:0.00px;"><span>湿热质</span></li>
+          <li class="histo" style="height:0.00px;"><span>血郁质</span></li>
+          <li class="histo" style="height:0.00px;"><span>气郁质</span></li>
+          <li class="histo" style="height:0.00px;"><span>特秉质</span></li>
+      </ul>
+
+      <ul class="dots">
+          <li class="dot" style="height:30px;"><span></span></li>
+          <li class="dot" style="height:50px;"><span></span></li>
+          <li class="dot" style="height:20px;"><span></span></li>
+          <li class="dot" style="height:50px;"><span></span></li>
+          <li class="dot" style="height:60px;"><span></span></li>
+          <li class="dot" style="height:20px;"><span></span></li>
+          <li class="dot" style="height:20px;"><span></span></li>
+          <li class="dot" style="height:20px;"><span></span></li>
+          <li class="dot" style="height:20px;"><span></span></li>
+      </ul>
+
+      <img src="https://img.huofar.com/webapp/test/images/desktop_line_3.png" class="desktop-line" />
+
+      <div class="bottom-line"></div>
+    </div-->
+
+    <div class="row gallry">
+
+    </div>
+
+    <!--结果解释-->
+    <div class="row desc-list">
+
+
+
+        <div class="item active" onclick="drop_down(0)">
+            <h3><img src="https://img.huofar.com/images/sym-icon.png?type=1" width="20" height="20" style="margin-right: 16px;">平和质，是什么意思？<em></em></h3>
+            <div class="content">
+                <ul>
+                    <li><i class="tab-lsit-conent-title-style"></i>令人羡慕，只占中国人群的 30% 左右。</li><li><i class="tab-lsit-conent-title-style"></i>先天禀赋良好，后天调养得当。</li><li><i class="tab-lsit-conent-title-style"></i>体态适中，面色红润，精力充沛，脏腑功能强健壮实。</li><li><i class="tab-lsit-conent-title-style"></i>是和谐生命的范本。</li>                    </ul>
+            </div>
+        </div>
+
+
+
+
+
+        <div class="item" onclick="drop_down(2)">
+            <h3><img src="https://img.huofar.com/images/sym-icon.png?type=1" width="20" height="20" style="margin-right: 16px;">平和质怎么来？<em></em></h3>
+            <div class="content">
+                <ul>
+                    <li><i class="tab-lsit-conent-title-style"></i>出生于长寿家庭。</li><li><i class="tab-lsit-conent-title-style"></i>父母善于养生。回归简单，自然而然。从小就培养了你良好的生活习惯和性格心态。</li><li><i class="tab-lsit-conent-title-style"></i>保持了良好的生活习惯，饮食健康，起居有常。</li><li><i class="tab-lsit-conent-title-style"></i>顺应四季的自然特点饮食穿衣。</li><li><i class="tab-lsit-conent-title-style"></i>几乎不熬夜。</li><li><i class="tab-lsit-conent-title-style"></i>懂得知足，遇烦心事先反省、不抱怨。</li><li><i class="tab-lsit-conent-title-style"></i>适度运动，不以追求肌肉为目标。</li>                    </ul>
+            </div>
+        </div>
+
+
+
+
+        <div class="item" onclick="drop_down(3)">
+            <h3><img src="https://img.huofar.com/images/sym-icon.png?type=1" width="20" height="20" style="margin-right: 16px;">也许你不是真平和质！<em></em></h3>
+            <div class="content">
+                <ul>
+                    <li><i class="tab-lsit-conent-title-style"></i>别高兴太早，低头看看你的肚子！这大肚腩是健康的定时炸弹。</li><li><i class="tab-lsit-conent-title-style"></i>脸色不如年轻时候有光泽，精力也许不是那么充沛。</li><li><i class="tab-lsit-conent-title-style"></i>如果你的实际情况并不符合关于平和质的描述或者有一些异常的体检指标，请注意你的生活方式吧，你处在平和与偏颇的边缘。</li>                    </ul>
+            </div>
+        </div>
+
+        <div class="item" onclick="drop_down(5)">
+            <h3><img src="https://img.huofar.com/images/sym-icon.png?type=1" width="20" height="20" style="margin-right: 16px;">平和质常见问题的调理原则<em></em></h3>
+            <div class="content newcontent">
+
+                <ul class="tab-list" id="myTab">
+                    <li class="active">
+                        <a href="#bubble_0" data-toggle="tab">
+                            脾胃不和                    </a>
+                    </li>
+                    <li>
+                        <a href="#bubble_1" data-toggle="tab">
+                            小肚腩                    </a>
+                    </li>
+                    <li>
+                        <a href="#bubble_2" data-toggle="tab">
+                            口臭                    </a>
+                    </li>
+                    <li>
+                        <a href="#bubble_3" data-toggle="tab">
+                            易疲乏                    </a>
+                    </li>
+                    <li>
+                        <a href="#bubble_4" data-toggle="tab">
+                            面色黯淡                    </a>
+                    </li>
+                </ul>
+
+                <div id="myTabContent" class="tab-content">
+
+
+                    <div class="tab-pane fade in active tab-list-conent" id="bubble_0">
+                        <h2 class="tab-list-conent-title">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            调理原则：养脾胃、健脾                      </h2>
+                        <p class="tab-list-conent-txt" style="border-bottom:none;">脾为后天之本，气血生化之源。人出生后，所有的生命活动都有赖于后天脾胃摄入的营养物质。脾胃居中土，与其他脏腑关系密切，所以又有“脾胃一伤，四脏皆无生气”的说法。如果平日有吃饭不规律、感觉食量变弱、胃胀气等问题，要注意养护你的脾胃。</p>
+                        <h2 class="tab-list-conent-title" style="display: none;">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            对症调理
+                        </h2>
+                        <p class="tab-list-conent-txt" style="display: none;">这款健培五珍粉中黄小米、山药等食材，起到健脾和胃之作用。赤小豆、薏米、白扁豆调节人体机能，驱湿邪，提高机体抗病能力。</p>
+                        <a class="tab-list-conent-goods"  style="display: none;" href="https://h5.youzan.com/v2/showcase/goods?alias=1y7ots1kqbh5a&from=wsc&kdtfrom=wsc">
+                            <div style="float: left;width: 106px;height: 80px;overflow: hidden;">
+                                <img class="tab-list-conent-goods-img" src="https://img.yzcdn.cn/upload_files/2019/03/07/FtbMe6OFFn8YDOEAJMGUNATbwXXL.jpg?imageView2/2/w/580/h/580/q/75/format/jpg">
+                            </div>
+                            <div class="bubble-list-goods-right">
+                                <h3>健培五珍粉 | 口感香甜一大罐。黄小米山药薏米赤小豆白扁豆。</h3>
+                                <div class="tab-list-conent-right-symptom">
+
+                                </div>
+                                <div class="bubble-list-goods-right-Price clearfix">
+                                    <span class="clearfix"><span class="jiawei">¥</span><span style="float: left;">39.00</span></span>
+                                </div>
+                            </div>
+                            <div class="bubbel-div"><i class="bubble-icon"></i></div>
+                        </a>
+
+                    </div>
+
+
+                    <div class="tab-pane fade in tab-list-conent" id="bubble_1">
+                        <h2 class="tab-list-conent-title">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            调理原则：祛痰化湿，助消化                      </h2>
+                        <p class="tab-list-conent-txt" style="border-bottom:none;">平和质的人，三十岁以后，或是因为生活工作压力大，没有时间运动，或是因为饮食过于油腻，都会有一些小肚腩。其实你的身体运转还算正常，只要注意饮食，适当运动就可以减掉小肚腩。</p>
+                        <h2 class="tab-list-conent-title" style="display: none;">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            对症调理
+                        </h2>
+                        <p class="tab-list-conent-txt" style="display: none;">融合了新会柑清醇的果香味和云南普洱茶醇厚甘香之味，让柑皮（即陈皮）与茶叶相互吸收精华，形成了风味独特、口感一绝的柑普茶。其保健作用兼具新会陈皮和普洱茶功效。新会柑，是新会陈皮唯一原料。功效：理气调中、健脾和胃、燥湿化痰、消积化滞；与普洱茶结合，无论是表还是内涵，均混然天成，堪称一绝。其保健功效，自然兼有两者的好处：具有健脾养胃、清热解毒、化痰止咳、降脂减肥、养颜美容以及抗动脉硬化、抗衰老和醒酒等作用。</p>
+                        <a class="tab-list-conent-goods"  style="display: none;" href="">
+                            <div style="float: left;width: 106px;height: 80px;overflow: hidden;">
+                                <img class="tab-list-conent-goods-img" src="">
+                            </div>
+                            <div class="bubble-list-goods-right">
+                                <h3></h3>
+                                <div class="tab-list-conent-right-symptom">
+
+                                </div>
+                                <div class="bubble-list-goods-right-Price clearfix">
+                                    <span class="clearfix"><span class="jiawei">¥</span><span style="float: left;"></span></span>
+                                </div>
+                            </div>
+                            <div class="bubbel-div"><i class="bubble-icon"></i></div>
+                        </a>
+
+                    </div>
+
+
+                    <div class="tab-pane fade in tab-list-conent" id="bubble_2">
+                        <h2 class="tab-list-conent-title">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            调理原则：清热祛湿                      </h2>
+                        <p class="tab-list-conent-txt" style="border-bottom:none;">即使是健康型的人，经常喝酒，吃辛辣的食物，平时压力很大，也会有口臭。因为生活习惯不好，偶尔胃火蒸腾，胃气不降。饮食的健康才是解决问题的关键。减少进食肉类及热气的东西，避免暴饮暴食，戒酒、有选择性地吃一些绿豆、冬瓜等偏凉性的食物。</p>
+                        <h2 class="tab-list-conent-title" style="display: none;">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            对症调理
+                        </h2>
+                        <p class="tab-list-conent-txt" style="display: none;">白牡丹茶，素有“绿妆素裹”之美感，芽头肥壮，汤色黄亮，滋味鲜醇，叶底嫩匀。冲泡后品尝，滋昧鲜醇可口，还能起药理作用。白茶性清凉，具有退热降火之功效。喝完的茶叶，可以在嘴里咀嚼一会儿，祛除口腔异味效果很好。</p>
+                        <a class="tab-list-conent-goods"  style="display: none;" href="">
+                            <div style="float: left;width: 106px;height: 80px;overflow: hidden;">
+                                <img class="tab-list-conent-goods-img" src="">
+                            </div>
+                            <div class="bubble-list-goods-right">
+                                <h3></h3>
+                                <div class="tab-list-conent-right-symptom">
+
+                                </div>
+                                <div class="bubble-list-goods-right-Price clearfix">
+                                    <span class="clearfix"><span class="jiawei">¥</span><span style="float: left;"></span></span>
+                                </div>
+                            </div>
+                            <div class="bubbel-div"><i class="bubble-icon"></i></div>
+                        </a>
+
+                    </div>
+
+
+                    <div class="tab-pane fade in tab-list-conent" id="bubble_3">
+                        <h2 class="tab-list-conent-title">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            调理原则：滋阴补气                      </h2>
+                        <p class="tab-list-conent-txt" style="border-bottom:none;">平和质的人，在城市的高压力中生活，也难免 会出现精力不足，易疲倦的感觉。是因为体内的气血不足了，也就是能量不足，跟不上消耗的速度。需要及时补充能量</p>
+                        <h2 class="tab-list-conent-title" style="display: none;">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            对症调理
+                        </h2>
+                        <p class="tab-list-conent-txt" style="display: none;">配方出自<本草崇原>，遵循传统古法将九制芝麻，桑葚两种原料按一定的比例配置，制成梧桐丸大小的丸子，携带、食用都很方便。九制芝麻经过九蒸九晒，充分吸收太阳的能量和阳气，滋补效果更好，而且吃起来不会油腻，利于人体吸收和消化。</p>
+                        <a class="tab-list-conent-goods"  style="display: none;" href="https://h5.youzan.com/v2/showcase/goods?alias=2x421zpewu3lq&from=wsc&kdtfrom=wsc">
+                            <div style="float: left;width: 106px;height: 80px;overflow: hidden;">
+                                <img class="tab-list-conent-goods-img" src="https://img.yzcdn.cn/upload_files/2017/06/16/Fu6l1wQtYMQFIgK2jOlFySLhuyAq.jpg?imageView2/2/w/580/h/580/q/75/format/jpg">
+                            </div>
+                            <div class="bubble-list-goods-right">
+                                <h3>桑葚九制芝麻丸 | 道家制作工艺。手作辟谷蜜丸。</h3>
+                                <div class="tab-list-conent-right-symptom">
+
+                                </div>
+                                <div class="bubble-list-goods-right-Price clearfix">
+                                    <span class="clearfix"><span class="jiawei">¥</span><span style="float: left;">39.00</span></span>
+                                </div>
+                            </div>
+                            <div class="bubbel-div"><i class="bubble-icon"></i></div>
+                        </a>
+
+                    </div>
+
+
+                    <div class="tab-pane fade in tab-list-conent" id="bubble_4">
+                        <h2 class="tab-list-conent-title">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            调理原则：补气养血，扶正祛邪                      </h2>
+                        <p class="tab-list-conent-txt" style="border-bottom:none;">都市里生活的人，空气污染，生活节奏快，压力大的背景下，难免会有面色黯淡的现象，是因为气血不足了。需要补气，养血。将身体内的不良毒物都排出体外，身体才能健康有力的运转起来。</p>
+                        <h2 class="tab-list-conent-title" style="display: none;">
+                            <i class="tab-lsit-conent-title-style"></i>
+                            对症调理
+                        </h2>
+                        <p class="tab-list-conent-txt" style="display: none;">《本草纲目》说灵芝：“主胸中结，益心气，补中，增智慧，不忘，久服轻身不老，延年神仙。” 灵芝不寒不热、不温不燥不腻，既补阴，又补阳。补血补气同时进行。</p>
+                        <a class="tab-list-conent-goods"  style="display: none;" href="">
+                            <div style="float: left;width: 106px;height: 80px;overflow: hidden;">
+                                <img class="tab-list-conent-goods-img" src="">
+                            </div>
+                            <div class="bubble-list-goods-right">
+                                <h3></h3>
+                                <div class="tab-list-conent-right-symptom">
+
+                                </div>
+                                <div class="bubble-list-goods-right-Price clearfix">
+                                    <span class="clearfix"><span class="jiawei">¥</span><span style="float: left;"></span></span>
+                                </div>
+                            </div>
+                            <div class="bubbel-div"><i class="bubble-icon"></i></div>
+                        </a>
+
+                    </div>
+
+
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="item" onclick="drop_down(4)">
+            <h3><img src="https://img.huofar.com/images/sym-icon.png?type=1" width="20" height="20" style="margin-right: 16px;">想改善，这么办！<em></em></h3>
+            <div class="content">
+                <ul>
+                    <li class="bold-li">饮食有原则：</li><li><i class="tab-lsit-conent-title-style"></i>忌食生冷，多吃温热：冷饮尽量不吃，冰箱里刚拿出来的食物，要放到室温再吃。</li><li><i class="tab-lsit-conent-title-style"></i>五味调和，荤素搭配，选择当地、当季出产的食物为主。</li><li class="bold-li">避寒就温：</li><li><i class="tab-lsit-conent-title-style"></i>空调要远离，尤其在出汗的时候。每晚温热的水泡脚。</li><li class="bold-li">保持有规律的适度运动：</li><li><i class="tab-lsit-conent-title-style"></i>每天 30—45 分钟的适度运动，避免大汗淋漓和过长时间的运动。</li><li class="bold-li">不熬夜：</li><li><i class="tab-lsit-conent-title-style"></i>23点前睡觉是底线。子夜是养阳的最佳时机。</li>                    </ul>
+            </div>
+        </div>
+
+
+        <!--<div class="item active">
+            <h3>药补不如食补:<em></em></h3>
+                        <div class="content">
+                            <ul>
+                                                                    </ul>
+                        </div>
+    </div>-->
+    </div>
+
+    <script type="text/javascript">
+        function drop_down(key){
+            var s_data={};
+            s_data.Time=Date.parse(new Date())/1000;
+            s_data.item_index=key;
+            s_data.Event='TIZHITEST_CLICK_RESULT_WEB_PAGE_DROP_DOWN';
+            s_data.ip="<=$_SERVER['REMOTE_ADDR']>";
+            s_data.uid=0;
+            s_data.imei='';
+            var post_data=[];
+            post_data.push(s_data);
+            var data_str=JSON.stringify(post_data);
+            $.ajax({
+                type: "POST",
+                url: "http://avatar.huofar.cn/statistics",
+                data: {data: data_str}
+            });
+        }
+        function a(){
+            $("#sharetap").hide();
+        }
+        function b(){
+            $("#sharetap").show();
+        }
+        setTimeout(a,10000);
+        setTimeout(b,5000);
+    </script>
+
+    <div align="center" style="margin-top: 30px;">
+        <img src="https://img.huofar.com/life/icon/hf.png" width="230">
+    </div>
+    <!--<div align="center">
+        <a href="http://tv.sohu.com/item/MTIxMTY4Mw==.html">
+            <img src="https://img.huofar.com/life/icon/xlz1.png" width="230">
+        </a>
+    </div>-->
+
+    <!--div class="fudai" style="height:768px;background:url(https://img.huofar.com/webapp/tizhi/images/fudai.png) no-repeat center center; background-size:320px 768px; position:relative;">
+
+    <div style="width:100%;height:256px;background:url(https://img.huofar.com/webapp/tizhi/images/xiaoman.jpg) no-repeat center center;background-size:482px 256px;position:absolute; top:140px;">
+
+    </div>
+
+    <div class="fudai-items" style="position:absolute; top:440px; width:100%; padding:0 5%">
+        <ul>
+            <li>男性</li>
+            <li>28岁以下</li>
+            <li>平和质</li>
+                    </ul>
+    </div>
+
+    <div style="position:absolute;width:100%;line-height:150%;top:545px;text-align:center;">
+        排毒养颜、通便轻身、润燥去火</br>
+        增强免疫、健脾养胃、备孕
+    </div>
+
+    <div style="position:absolute;width:100%;top:638px;text-align:center;">
+        素食、家用、办公室用
+    </div>
+
+
+    <div style="position:absolute;top:687px;width:100%">
+    <a href="https://wap.koudaitong.com/v2/showcase/goods?alias=1y8x6e3fc0f8e" class="submit">定制我的福袋</a>
+    </div>
+
+    </div-->
+
+
+    <!--按钮操作区-->
+    <!--<div class="row result-actions">
+        <a class="share-to-weixin" href="javascript:void(0)" title="让微信上的朋友也来测一测！" target="_blank"></a>
+        <a class="share-to-weibo" href="http://service.weibo.com/share/share.php?url=http%3A%2F%2Fwww.huofar.com%2Ftizhi%3Finv%3D18376961%26source%3D&title=%E8%B6%85%E5%87%86%E4%BD%93%E8%B4%A8%E6%B5%8B%E8%AF%95%EF%BC%8C5+%E5%88%86%E9%92%9F%E4%BB%8E%E5%81%A5%E5%BA%B7%E7%9C%8B%E4%BD%A0%E7%9A%84%E6%80%A7%E6%A0%BC%EF%BC%81&pic=&ralateUid=huofar" title="让微博上的朋友也来测一测！" target="_blank"></a>
+
+    </div>-->
+
+    <!--div class="row result-ia">
+  <img src="https://img.huofar.com/logo/ia-175.png" width="85" class="logo" />
+  <h3>过日子<br/>告诉平和质的你应该吃什么</h3>
+  <ul>
+      <li>每个节气更新养生热点，为你的体质量身打造；</li>
+      <li>为家人测试体质，推荐适合全家的食物。</li>
+  </ul>
+
+  <a href="http://huofar.cn/m/" class="download">下载过日子</a>
+</div-->
+
+    <!--关注微信区-->
+    <div class="row weixin">
+        <img src="https://img.huofar.com/webapp/test/images/wx_title.png" width="180" class="title" />
+        <img src="https://img.huofar.com/webapp/test/images/wx_qrcode.png" class="qr" />
+    </div>
+
+    <!--copyright-->
+    <!--<div class="row designed-by" id="share">
+        <img src="https://img.huofar.com/webapp/test/images/designed_by_huofar.png"  width="130" />
+    </div>-->
+</div>
+
+<div id="shareAlertView">
+    <img src="https://img.huofar.com/webapp/test/images/share_tip.png" width="260" class="share-tip" />
+</div>
+
+<script src="https://img.huofar.com/js/jquery-1.11.0.min.js"></script>
+<script src="https://img.huofar.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+<script type="text/javascript">
+    $(function(){
+        //location.hash = $('#test_id').attr('value');
+        //window.history.pushState("","","http://www.huofar.com/tizhi/18376961")
+
+        $('.desc-list').find('h3').click(function(){
+            if($(this).parent().hasClass('active'))
+                $(this).parent().removeClass('active');
+            else
+                $(this).parent().addClass('active');
+        });
+
+        $('.share-to-weixin').click(function(){
+            $('#shareAlertView').css('height',$('body').height()).show();
+        });
+
+        $('#shareAlertView').click(function(){
+            $('#shareAlertView').fadeOut('fast');
+        });
+    });
+
+</script>
+
+<!--<script type="text/javascript" src="https://res2.wx.qq.com/open/js/jweixin-1.0.0.js"></script>-->
+<script type="text/javascript" src="http://res2.wx.qq.com/open/js/jweixin-1.4.0.js"></script>
+<script>
+    //imgUrl = 'http://img.huofar.com/images/huofar_leaf_white.png';
+    imgUrl = 'http://www.huofar.com/huofar_leaf_white.png';
+    lineLink = 'https://www.huofar.com/tizhi/18376961?source=&froms=';
+    descContent = "仅需5分钟，快来测测吧！";
+    shareTitle = '超准！我的体质是：平和质';
+    appid = 'wx9b090866dd53c6e1';
+
+    wx.config({
+        appId: 'wx9b090866dd53c6e1',
+        timestamp:1573716603 ,
+        nonceStr: 'pmAO2cADZvtwq4LC',
+        signature: '5ca77d82ba6dc1f8fad1bbf02bb2a04a213dbdf0',
+        jsApiList: ["updateAppMessageShareData"]
+    });
+    wx.ready(function(){
+        wx.updateAppMessageShareData({
+            title: shareTitle, // 分享标题
+            desc: descContent, // 分享描述
+            link: lineLink, // 分享链接
+            imgUrl: imgUrl, // 分享图标
+            success: function () { }
+        });
+    });
+</script>
+
+</body>
+</html>
